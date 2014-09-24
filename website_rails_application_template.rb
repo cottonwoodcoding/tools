@@ -13,6 +13,27 @@ gem 'rails_12factor'
 gem 'haml-rails'
 gem 'therubyracer'
 
+gem_group :development, :test do
+  gem 'debugger'
+  gem 'sqlite3'
+  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'pry'
+  gem 'thin'
+end
+
+gem_group :test do
+  gem 'shoulda-matchers'
+  gem 'webmock'
+  gem 'simplecov', require: false
+  gem 'factory_girl_rails'
+end
+
+gem_group :production do
+  gem 'pg'
+  gem 'unicorn'
+  gem 'heroku-deflater'
+end
+
 if yes?('Run advanced setup (config_files, scaffold generation, model generation, controller generation, gem additions, rake tasks, database migrations)? (yes | no)')
   # TODO: should probably ask them up front what advanced options they want to run so they don't have to go through all the questions
 
@@ -100,26 +121,6 @@ if yes?('Run advanced setup (config_files, scaffold generation, model generation
       generate(:migration, migration_name)
     end
   end
-end
-
-gem_group :development, :test do
-  gem 'debugger'
-  gem 'sqlite3'
-  gem 'rspec-rails', '~> 3.0.0.beta'
-  gem 'pry'
-end
-
-gem_group :test do
-  gem 'shoulda-matchers'
-  gem 'webmock'
-  gem 'simplecov', require: false
-  gem 'factory_girl_rails'
-end
-
-gem_group :production do
-  gem 'pg'
-  gem 'unicorn'
-  gem 'heroku-deflater'
 end
 
 run("echo ruby \\'2.0.0\\' >>  'Gemfile'")
