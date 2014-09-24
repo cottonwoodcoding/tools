@@ -197,7 +197,7 @@ run('rm config/environments/production.rb')
 
 # Add New Produciton.rb
 file 'config/environments/production.rb', <<-CODE
-#{@app_name}::Application.configure do
+#{@app_name.capitalize}::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
